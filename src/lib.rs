@@ -15,7 +15,11 @@ pub fn start_trace(clock: Box<dyn Fn() -> u64>) {
 }
 
 pub fn stop_trace() -> Trace {
-    unsafe { TRACE.take().unwrap() }
+    unsafe {     
+        if let Some(trace) = TRACE.take() {
+            return trace;
+        }
+    };
 }
 
 pub fn get_mut_trace() -> Option<&'static mut Trace> {
