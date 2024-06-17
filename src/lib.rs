@@ -18,6 +18,8 @@ pub fn stop_trace() -> Trace {
     unsafe {     
         if let Some(trace) = TRACE.take() {
             return trace;
+        } else {
+            return Trace::new(clock);
         }
     };
 }
