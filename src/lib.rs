@@ -15,11 +15,11 @@ pub fn start_trace(clock: Box<dyn Fn() -> u64>) {
 }
 
 pub fn stop_trace() -> Trace {
-    unsafe {     
+    unsafe {
         if let Some(trace) = TRACE.take() {
             return trace;
         } else {
-            return Trace::new(clock);
+            return Trace::new(Box::new(|| 0));
         }
     };
 }
