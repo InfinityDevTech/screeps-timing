@@ -19,7 +19,7 @@ pub fn stop_trace() -> Trace {
         if let Some(trace) = TRACE.take() {
             return trace;
         } else {
-            return Trace::new(Box::new(|| 0));
+            panic!("Expected trace to be set!");
         }
     };
 }
