@@ -14,12 +14,12 @@ pub fn start_trace(clock: Box<dyn Fn() -> u64>) {
     }
 }
 
-pub fn stop_trace() -> Trace {
+pub fn stop_trace() -> Option<Trace> {
     unsafe {
         if let Some(trace) = TRACE.take() {
-            return trace;
+            return Some(trace);
         } else {
-            panic!("Expected trace to be set!");
+            return None;
         }
     };
 }
